@@ -14,8 +14,16 @@ namespace users
             _inactivityTimer = inactivityTimer;
             _inactivityTimer.OnTimeout += HandleTimeout;
             _inactivityTimer.Start();
+        }
 
-            SubscribeToTouchEvents();
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (CurrentPage is ContentPage page)
+            {
+                AddGestureHandlers(page);
+            }
         }
 
         private void HandleTimeout()
@@ -24,28 +32,20 @@ namespace users
             {
                 SecureStorage.Default.Remove("access_token");
                 await Current.DisplayAlert("Logged Out", "You have been logged out due to inactivity.", "OK");
-                await Current.GoToAsync("//LoginPage");
+                await GoToAsync("//LoginPage");
             });
         }
 
-        private void SubscribeToTouchEvents()
-        {
-            Application.Current!.MainPage.Appearing += (_, __) =>
-            {
-                AddGestureHandlers(Application.Current!.MainPage);
-            };
-        }
-
-        private void AddGestureHandlers(Page page)
+        private void AddGestureHandlers(ContentPage page)
         {
             var gesture = new TapGestureRecognizer
             {
                 Command = new Command(() => _inactivityTimer.Reset())
             };
 
-            if (page is ContentPage contentPage && contentPage.Content != null)
+            if (page.Content != null)
             {
-                contentPage.Content.GestureRecognizers.Add(gesture);
+                page.Content.GestureRecognizers.Add(gesture);
             }
         }
 

@@ -10,7 +10,7 @@ namespace users
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            var inactivityTimer = new InactivityTimer(TimeSpan.FromMinutes(3));
+            var inactivityTimer = new InactivityTimer(TimeSpan.FromMinutes(5));
             return new Window(new AppShell(inactivityTimer));
         }
     }

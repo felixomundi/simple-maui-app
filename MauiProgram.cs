@@ -23,6 +23,7 @@ namespace users
             builder.Services.AddHttpClient<IApiService, ApiService>();
             builder.Services.AddSingleton<SplashScreenPage>();
             builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddSingleton<LoginViewModel>();
             builder.Services.AddSingleton<RegisterPage>();
             builder.Services.AddSingleton<HomePage>();
             builder.Services.AddSingleton<TransactionsPage>();

@@ -24,6 +24,7 @@
                      <!-- Email -->
                      <Entry x:Name="EmailEntry"
                             Placeholder="Email Address"
+                            Text="{Binding Email}"
                             Keyboard="Email"
                             TextColor="#000"
                             PlaceholderColor="#aaa"
@@ -40,7 +41,8 @@
 
                             <Entry x:Name="PasswordEntry"
                                    Placeholder="Password"
-                                   IsPassword="True"
+                                   Text="{Binding Password}"
+                                   IsPassword="{Binding PasswordEntryIsPassword}"
                                    TextColor="#000"
                                    PlaceholderColor="#aaa"
                                    BackgroundColor="#fff"
@@ -50,9 +52,9 @@
                                    HorizontalOptions="FillAndExpand"/>
 
                             <ImageButton x:Name="TogglePasswordButton"
-                                         Source="hide.png"
+                                         Source="{Binding TogglePasswordIcon}"
                                          BackgroundColor="Transparent"
-                                         Clicked="OnTogglePasswordClicked"
+                                         Command="{Binding TogglePasswordVisibilityCommand}"
                                          HeightRequest="24"
                                          WidthRequest="24"
                                          HorizontalOptions="End"
@@ -68,30 +70,43 @@
                             FontSize="14"
                             HorizontalOptions="End">
                             <Label.GestureRecognizers>
-                                   <TapGestureRecognizer Tapped="OnForgotPasswordTapped"/>
+                                   <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}"/>
                             </Label.GestureRecognizers>
                      </Label>
 
                      <ActivityIndicator
                             x:Name="LoginActivityIndicator"
-                            IsRunning="False"
-                            IsVisible="False"
+                            IsVisible="{Binding IsBusy}"
+                            IsRunning="{Binding IsBusy}"
                             Color="Blue"
                             HorizontalOptions="Center"/>
 
                      <!-- Login -->
+
                      <Button Text="Login"
-                            x:Name="LoginButton"
-                             Clicked="OnLoginClicked"
+                             x:Name="LoginButton"
+                             Command="{Binding LoginCommand}"
                              BackgroundColor="#007AFF"
                              TextColor="White"
                              CornerRadius="10"
                              HeightRequest="50"
+                             IsEnabled="{Binding IsNotBusy}"
                              FontSize="18"/>
+
+                     <HorizontalStackLayout HorizontalOptions="Center">
+                            <Label Text="Don't have an account?"/>
+                            <Label Text="Register"
+                                   TextColor="Blue"
+                                   FontAttributes="Bold" Margin="5,0,0,0">
+                                   <Label.GestureRecognizers>
+                                          <TapGestureRecognizer Command="{Binding NavigateToRegisterCommand}"/>
+                                   </Label.GestureRecognizers>
+                            </Label>
+                     </HorizontalStackLayout>
 
                      <!-- Cancel -->
                      <Button Text="Cancel"
-                             Clicked="OnCancelClicked"
+                             Command="{Binding CancelCommand}"
                              BackgroundColor="#CCCCCC"
                              TextColor="#333"
                              CornerRadius="10"
