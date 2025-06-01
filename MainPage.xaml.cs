@@ -19,21 +19,3 @@ namespace users
         }
     }
 }
-
-
-// using users.Services;
-// using users.ViewModels;
-// namespace users
-// {
-//     public partial class MainPage : ContentPage
-//     {
-
-//         public MainPage(ViewModel vm)
-//         {
-//             InitializeComponent();
-//             BindingContext = vm;
-//         }     
-
-        
-//     }
-// }

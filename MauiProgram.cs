@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-// using users;
-// using users.Services;
-// using users.ViewModels;
+using users.Pages;
+using users.Services;
 namespace users
 {
     public static class MauiProgram
@@ -20,11 +19,13 @@ namespace users
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
-
-            // builder.Services.AddSingleton<UserService>();
-            // builder.Services.AddSingleton<ViewModel>();
-            // builder.Services.AddSingleton<MainPage>();
-
+            builder.Services.AddHttpClient<IApiService, ApiService>();
+            builder.Services.AddSingleton<SplashScreenPage>();
+            builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddSingleton<RegisterPage>();
+            builder.Services.AddSingleton<HomePage>();
+            builder.Services.AddSingleton<TransactionsPage>();
+            builder.Services.AddSingleton<SettingsPage>();
             return builder.Build();
         }
     }

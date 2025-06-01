@@ -1,0 +1,95 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="users.Pages.LoginPage"
+             BackgroundColor="#f8f9fa"
+             Title="Login">
+       <ScrollView>
+              <VerticalStackLayout
+                     Spacing="20"
+                     Padding="40"
+                     VerticalOptions="Center">
+
+                     <!-- Logo -->
+                     <Image Source="bank.png"
+                            HeightRequest="100"
+                            WidthRequest="100"
+                            HorizontalOptions="Center"/>
+
+                     <Label Text="Login to Your Account"
+                            FontSize="28"
+                            HorizontalOptions="Center"
+                            FontAttributes="Bold"
+                            TextColor="#333"/>
+
+                     <!-- Email -->
+                     <Entry x:Name="EmailEntry"
+                            Placeholder="Email Address"
+                            Keyboard="Email"
+                            TextColor="#000"
+                            PlaceholderColor="#aaa"
+                            BackgroundColor="#fff"
+                            HeightRequest="50"
+                            FontSize="16"/>
+
+                     <!-- Password with toggle -->
+                     <Grid ColumnSpacing="10">
+                            <Grid.ColumnDefinitions>
+                                   <ColumnDefinition Width="*"/>
+                                   <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Entry x:Name="PasswordEntry"
+                                   Placeholder="Password"
+                                   IsPassword="True"
+                                   TextColor="#000"
+                                   PlaceholderColor="#aaa"
+                                   BackgroundColor="#fff"
+                                   HeightRequest="50"
+                                   FontSize="16"
+                                   Grid.Column="0"
+                                   HorizontalOptions="FillAndExpand"/>
+
+                            <ImageButton x:Name="TogglePasswordButton"
+                                         Source="hide.png"
+                                         BackgroundColor="Transparent"
+                                         Clicked="OnTogglePasswordClicked"
+                                         HeightRequest="24"
+                                         WidthRequest="24"
+                                         HorizontalOptions="End"
+                                         VerticalOptions="Center"
+                                         Margin="0,0,10,0"
+                                         Grid.Column="1"/>
+                     </Grid>
+
+
+                     <!-- Forgot password -->
+                     <Label Text="Forgot Password?"
+                            TextColor="#007AFF"
+                            FontSize="14"
+                            HorizontalOptions="End">
+                            <Label.GestureRecognizers>
+                                   <TapGestureRecognizer Tapped="OnForgotPasswordTapped"/>
+                            </Label.GestureRecognizers>
+                     </Label>
+
+                     <!-- Login -->
+                     <Button Text="Login"
+                             Clicked="OnLoginClicked"
+                             BackgroundColor="#007AFF"
+                             TextColor="White"
+                             CornerRadius="10"
+                             HeightRequest="50"
+                             FontSize="18"/>
+
+                     <!-- Cancel -->
+                     <Button Text="Cancel"
+                             Clicked="OnCancelClicked"
+                             BackgroundColor="#CCCCCC"
+                             TextColor="#333"
+                             CornerRadius="10"
+                             HeightRequest="50"
+                             FontSize="18"/>
+
+              </VerticalStackLayout>
+       </ScrollView>
+</ContentPage>
