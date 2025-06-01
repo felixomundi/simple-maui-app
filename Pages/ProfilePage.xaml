@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:users.ViewModels"
+             x:Class="users.Pages.ProfilePage"
+             x:Name="PageRef"
+             Title="My Profile">
+
+    <ContentPage.BindingContext>
+        <vm:ProfileViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Image Source="users.png" WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" />
+            
+            <Label Text="Name" FontAttributes="Bold"/>
+            <Label Text="{Binding Name}" />
+
+            <Label Text="Email" FontAttributes="Bold"/>
+            <Label Text="{Binding Email}" />
+
+            <Label Text="Phone" FontAttributes="Bold"/>
+            <Label Text="{Binding Phone}" />
+
+            <Button Text="Edit Profile" Command="{Binding EditCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

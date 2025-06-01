@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using users.Pages;
 using users.Services;
+using users.ViewModels;
 namespace users
 {
     public static class MauiProgram
@@ -25,7 +26,10 @@ namespace users
             builder.Services.AddSingleton<RegisterPage>();
             builder.Services.AddSingleton<HomePage>();
             builder.Services.AddSingleton<TransactionsPage>();
-            builder.Services.AddSingleton<SettingsPage>();
+            builder.Services.AddTransient<SettingsViewModel>();
+            builder.Services.AddTransient<SettingsPage>();
+            builder.Services.AddTransient<ChangePasswordViewModel>();
+            builder.Services.AddSingleton<InactivityTimer>();
             return builder.Build();
         }
     }

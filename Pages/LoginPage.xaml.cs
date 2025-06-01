@@ -18,27 +18,30 @@ namespace users.Pages
 
         private async void OnLoginClicked(object sender, EventArgs e)
         {
-             try
+            try
             {
-            string? email = EmailEntry.Text?.Trim();
-            string password = PasswordEntry.Text;
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
-            {
-                await DisplayAlert("Error", "Please enter both email and password.", "OK");
-                return;
-            }
+                string? email = EmailEntry.Text?.Trim();
+                string password = PasswordEntry.Text;
+                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+                {
+                    await DisplayAlert("Error", "Please enter both email and password.", "OK");
+                    return;
+                }
 
-            if (!IsValidEmail(email))
-            {
-                await DisplayAlert("Error", "Please enter a valid email address.", "OK");
-                return;
-            }
+                if (!IsValidEmail(email))
+                {
+                    await DisplayAlert("Error", "Please enter a valid email address.", "OK");
+                    return;
+                }
+                LoginButton.IsEnabled = false;
+                LoginActivityIndicator.IsVisible = true;
+                LoginActivityIndicator.IsRunning = true;
 
-            var loginPayload = new { email, password };
-            var content = new StringContent(JsonSerializer.Serialize(loginPayload), System.Text.Encoding.UTF8, "application/json");
-            var response = await _api.Client.PostAsync("login", content);
-            var body = await response.Content.ReadAsStringAsync();
-           
+                var loginPayload = new { email, password };
+                var content = new StringContent(JsonSerializer.Serialize(loginPayload), System.Text.Encoding.UTF8, "application/json");
+                var response = await _api.Client.PostAsync("login", content);
+                var body = await response.Content.ReadAsStringAsync();
+
                 if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
@@ -54,12 +57,18 @@ namespace users.Pages
                     if (error != null && error.TryGetValue("message", out var message))
                     {
                         await DisplayAlert("Login Failed", message ?? "An error occurred.", "OK");
-                    }                   
+                    }
                 }
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "OK");
+            }
+            finally
+            {
+                LoginButton.IsEnabled = true;
+                LoginActivityIndicator.IsRunning = false;
+                LoginActivityIndicator.IsVisible = false;
             }
 
         }

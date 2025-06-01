@@ -16,11 +16,11 @@
                         Shell.NavBarIsVisible="False"
                         ContentTemplate="{DataTemplate local:Pages.RegisterPage}"/>
 
-        <TabBar Route="home">
-                <Tab Title="Dashboard">
+        <TabBar  Route="home">
+                <Tab Icon="home.png" Title="Dashboard">
                         <ShellContent ContentTemplate="{DataTemplate local:Pages.HomePage}"/>
                 </Tab>
-                <Tab  Title="Settings">
+                <Tab Icon="settings.png" Title="Settings">
                         <ShellContent ContentTemplate="{DataTemplate local:Pages.SettingsPage}"/>
                 </Tab>
         </TabBar>

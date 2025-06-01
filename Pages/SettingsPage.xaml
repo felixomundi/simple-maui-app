@@ -1,8 +1,63 @@
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="users.Pages.SettingsPage">
-    <StackLayout Padding="20">
-        <Label Text="Settings" FontSize="24" />
-        <Button Text="Logout" Clicked="OnLogoutClicked" />
-    </StackLayout>
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="users.Pages.SettingsPage"
+    x:Name="PageRef"
+    BackgroundColor="White"
+    Title="Settings">
+
+    <ListView x:Name="SettingsListView"
+              ItemsSource="{Binding Settings}"
+              HasUnevenRows="True"
+              SeparatorVisibility="None"
+              BackgroundColor="White"
+              SelectionMode="None"
+              Margin="10">
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <ViewCell.View>
+                        <ContentView>
+                            <ContentView.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding BindingContext.OpenSettingCommand, Source={x:Reference PageRef}}"
+                                    CommandParameter="{Binding}" />
+                            </ContentView.GestureRecognizers>
+
+                            <Grid Padding="16"
+                                  ColumnDefinitions="32,*,24"
+                                  BackgroundColor="#F9F9F9"
+                                  Margin="0,6"
+                                  VerticalOptions="Center"
+                                  HeightRequest="60">
+
+                                <Image Source="{Binding Icon}"
+                                       WidthRequest="24"
+                                       HeightRequest="24"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center" />
+
+                                <Label Text="{Binding Name}"
+                                       FontSize="16"
+                                       TextColor="Black"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       Grid.Column="1"
+                                       Margin="10,0"/>
+
+                                <Image Source="chevron_right.png"
+                                       Grid.Column="2"
+                                       WidthRequest="20"
+                                       HeightRequest="20"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="End" />
+                            </Grid>
+                        </ContentView>
+                    </ViewCell.View>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

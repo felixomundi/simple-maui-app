@@ -5,7 +5,7 @@ namespace users.Pages
         public SplashScreenPage()
         {
             InitializeComponent();
-            // CheckAuthAndRedirect();
+            CheckAuthAndRedirect();
         }
 
         private async void CheckAuthAndRedirect()

@@ -72,8 +72,16 @@
                             </Label.GestureRecognizers>
                      </Label>
 
+                     <ActivityIndicator
+                            x:Name="LoginActivityIndicator"
+                            IsRunning="False"
+                            IsVisible="False"
+                            Color="Blue"
+                            HorizontalOptions="Center"/>
+
                      <!-- Login -->
                      <Button Text="Login"
+                            x:Name="LoginButton"
                              Clicked="OnLoginClicked"
                              BackgroundColor="#007AFF"
                              TextColor="White"

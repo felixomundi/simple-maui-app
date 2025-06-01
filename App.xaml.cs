@@ -1,4 +1,5 @@
-﻿namespace users
+﻿using users.Services;
+namespace users
 {
     public partial class App : Application
     {
@@ -9,7 +10,8 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            var inactivityTimer = new InactivityTimer(TimeSpan.FromMinutes(3));
+            return new Window(new AppShell(inactivityTimer));
         }
     }
 }
