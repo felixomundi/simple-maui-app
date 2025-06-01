@@ -26,7 +26,7 @@
                TextColor="#666"
                HorizontalTextAlignment="Center" />
 
-        <Button Text="Login"
+        <Button Text="Get Started"
                 WidthRequest="200"
                 HeightRequest="50"
                 Clicked="OnLoginClicked"
@@ -34,7 +34,7 @@
                 TextColor="White"
                 CornerRadius="8" />
 
-        <Button Text="Register"
+        <Button IsVisible="False" Text="Register"
                 WidthRequest="200"
                 HeightRequest="50"
                 Clicked="OnRegisterClicked"
