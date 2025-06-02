@@ -6,7 +6,7 @@ namespace users.Models
     public string Name { get; set; } = string.Empty;
     public string MemberId { get; set; } = string.Empty;
 
-    public string DisplayName => $"{MemberId} - {Name}";
+    public string DisplayName => $"{Id} - {Name}";
 }
 
 }

@@ -228,7 +228,7 @@ namespace users.ViewModels
                 IsBusy = true;
 
                 var loginPayload = new { email = Email.Trim(), password = Password };
-                var response = await _apiService.Client.PostAsJsonAsync("login", loginPayload);
+                var response = await _apiService.Client.PostAsJsonAsync("users/login", loginPayload);
 
                 if (response.IsSuccessStatusCode)
                 {
