@@ -252,7 +252,7 @@ namespace users.ViewModels
                         await Shell.Current.DisplayAlert("Login Failed", "An error occurred.", "OK");
                 }
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Error", ex.Message, "OK");
             }

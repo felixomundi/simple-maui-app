@@ -1,7 +1,75 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="users.Pages.HomePage">
-    <StackLayout Padding="20">
-        <Label Text="Welcome to the Dashboard" FontSize="24" />
-    </StackLayout>
+             x:Class="users.Pages.HomePage"
+             xmlns:vm="clr-namespace:users.ViewModels"
+             Title="Agency Banking Dashboard"
+             BackgroundColor="#F2F2F2">
+
+    <ContentPage.BindingContext>
+        <vm:DashboardViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Label Text="Welcome, Agent"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="#333" />
+             <Label Text="{Binding AgentName}" FontSize="16" TextColor="DarkGreen"/>       
+
+            <Label Text="Select an Operation"
+                   FontSize="16"
+                   TextColor="#666" />
+
+            <!-- Responsive Grid -->
+            <Grid ColumnSpacing="15" RowSpacing="15">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Card 1: Cash Withdrawal -->
+                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="#E3F2FD" CornerRadius="15" Padding="15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Image Source="cash_withdrawal.png" HeightRequest="50" />
+                        <Label Text="Cash Withdrawal" FontSize="16" HorizontalOptions="Center"/>
+                        <Button Text="Start" Command="{Binding CashWithdrawalCommand}" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Card 2: Cash Deposit -->
+                <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="#E8F5E9" CornerRadius="15" Padding="15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Image Source="cash_deposit.png" HeightRequest="50" />
+                        <Label Text="Cash Deposit" FontSize="16" HorizontalOptions="Center"/>
+                        <Button Text="Start" Command="{Binding CashDepositCommand}" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Card 3: Check Balance -->
+                <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="#FFF3E0" CornerRadius="15" Padding="15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Image Source="check_balance.png" HeightRequest="50" />
+                        <Label Text="Check Balance" FontSize="16" HorizontalOptions="Center"/>
+                        <Button Text="Start" Command="{Binding CheckBalanceCommand}" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Card 4: Pay Airtime -->
+                <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="#FCE4EC" CornerRadius="15" Padding="15">
+                    <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                        <Image Source="airtime.png" HeightRequest="50" />
+                        <Label Text="Pay Airtime" FontSize="16" HorizontalOptions="Center"/>
+                        <Button Text="Start" Command="{Binding PayAirtimeCommand}" />
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

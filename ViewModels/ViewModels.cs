@@ -2,9 +2,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using users.Models;
 using users.Services;
-
 namespace users.ViewModels;
-
 public class ViewModel : INotifyPropertyChanged
 {
     private readonly UserService _userService;

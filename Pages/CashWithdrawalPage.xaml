@@ -1,0 +1,64 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="users.Pages.CashWithdrawalPage"
+             Title="Cash Withdrawal"
+             BackgroundColor="#f8f9fa">
+
+       <ScrollView>
+              <VerticalStackLayout Padding="20"
+                            Spacing="20">
+
+                     <!-- Agent Info -->
+                     <Label Text="Agent:"
+                                   FontAttributes="Bold"
+                                   FontSize="16"/>
+                     <Label Text="{Binding AgentName}"
+                                   FontSize="16"
+                                   TextColor="DarkGreen"/>
+
+                     <Label Text="Bank Account:"
+                            FontAttributes="Bold"/>
+                     <Picker Title="Choose Account"
+                             ItemsSource="{Binding BankAccounts}"
+                             ItemDisplayBinding="{Binding DisplayName}"
+                             SelectedItem="{Binding SelectedAccount}"/>
+
+                     <!-- Balance -->
+                     <Label Text="Balance:"
+                            FontAttributes="Bold"/>
+                     <Label Text="{Binding SelectedAccount.Balance, StringFormat='{}{0:C}'}"
+                            FontSize="16"
+                            TextColor="DarkBlue"/>
+
+                     <Label Text="Withdrawal Amount"
+                            FontSize="18"
+                            FontAttributes="Bold"/>
+                     <Entry Placeholder="Enter amount"
+                            Keyboard="Numeric"
+                            Text="{Binding WithdrawalAmount}"/>
+
+                     <Label Text="Search Member:"
+                                   FontAttributes="Bold"/>
+                     <SearchBar Placeholder="Search by name or ID"
+                                Text="{Binding MemberSearchText}"
+                                SearchCommand="{Binding FilterMembersCommand}"/>
+
+                     <Picker Title="Select Member"
+                             ItemsSource="{Binding FilteredMembers}"
+                             ItemDisplayBinding="{Binding DisplayName}"
+                             SelectedItem="{Binding SelectedMember}"/>
+
+                     <Button Text="Submit Withdrawal"
+                             Command="{Binding SubmitWithdrawalCommand}"
+                             BackgroundColor="#007AFF"
+                             TextColor="White"
+                             CornerRadius="8"
+                             HeightRequest="50"/>
+
+                     <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                        IsVisible="{Binding IsBusy}"
+                                        HorizontalOptions="Center"/>
+
+              </VerticalStackLayout>
+       </ScrollView>
+</ContentPage>

@@ -26,8 +26,11 @@ namespace users
             builder.Services.AddSingleton<LoginViewModel>();
             builder.Services.AddSingleton<RegisterPage>();
             builder.Services.AddSingleton<HomePage>();
+            builder.Services.AddTransient<DashboardViewModel>();            
             builder.Services.AddSingleton<TransactionsPage>();
             builder.Services.AddTransient<SettingsViewModel>();
+            builder.Services.AddTransient<CashWithdrawalViewModel>();
+            builder.Services.AddTransient<CashWithdrawalPage>();
             builder.Services.AddTransient<SettingsPage>();
             builder.Services.AddTransient<ChangePasswordViewModel>();
             builder.Services.AddSingleton<InactivityTimer>();

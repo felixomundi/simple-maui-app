@@ -1,3 +1,4 @@
+using users.ViewModels;
 namespace users.Pages
 {
     public partial class HomePage : ContentPage
@@ -5,6 +6,7 @@ namespace users.Pages
         public HomePage()
         {
             InitializeComponent();
+            BindingContext = new DashboardViewModel();
         }
     }
 }

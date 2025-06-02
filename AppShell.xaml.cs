@@ -10,7 +10,7 @@ namespace users
             InitializeComponent();
             Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
             Routing.RegisterRoute(nameof(ChangePasswordPage), typeof(ChangePasswordPage));
-
+            Routing.RegisterRoute(nameof(CashWithdrawalPage), typeof(CashWithdrawalPage));
             _inactivityTimer = inactivityTimer;
             _inactivityTimer.OnTimeout += HandleTimeout;
             _inactivityTimer.Start();
